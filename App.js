@@ -10,6 +10,11 @@ import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs(['VirtualizedLists']);
 
+import * as React from 'react';
+import { Text, View } from 'react-native';
+
+import TabNavigator from './components/Navigator';
+
 // The theme we'll be using for our navigator
 const MyTheme = {
   ...DefaultTheme,
@@ -50,5 +55,6 @@ export default function App() {
     <NavigationContainer theme={MyTheme}>
       <Navigator />
     </NavigationContainer>
+    <TabNavigator/>
   );
 }
