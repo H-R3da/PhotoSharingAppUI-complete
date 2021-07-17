@@ -15,6 +15,23 @@ import { Text, View } from 'react-native';
 
 import TabNavigator from './components/Navigator';
 
+import DataSaver from './data/DataSaver';
+import Image from "react-native-web/dist/exports/Image";
+import { LinearGradient } from 'expo-linear-gradient';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import {Button, Item, Input} from 'native-base';
+import { Audio, Video } from 'expo-av';
+
+import LottieView from "lottie-react-native";
+import Chat from "./components/Chat";
+import Home from "./components/home";
+import {addWhitelistedInterpolationParam} from "react-native-web/dist/vendor/react-native/Animated/NativeAnimatedHelper";
+
+const data = new DataSaver();
+const Stack = createStackNavigator();
+
+
 // The theme we'll be using for our navigator
 const MyTheme = {
   ...DefaultTheme,
