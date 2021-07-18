@@ -47,10 +47,10 @@ function cacheFonts(fonts) {
 }
 
 export default class App extends React.Component {
-  const = {
+  /* const = {
     assetsReady: useState(false),
     setAssetsReady: useState(false),
-  }
+  } */
 
   async _loadFonts() {
     const iconFontAssets = cacheFonts([Feather.font])
@@ -58,25 +58,26 @@ export default class App extends React.Component {
   }
 
   // Loads the Nunito font (https://docs.expo.io/guides/using-custom-fonts/)
-  let = {
+  /* let = {
     fontsLoaded: useFonts({NunitoRegular, NunitoBold}),
-  }
+  } */
 
   render() {
     // If the fonts or assets are not loaded, we show a default App Loading screen.
     // Otherwise, we return our Photo Sharing App!
-    if (!fontsLoaded || !assetsReady) {
+    /* if (!fontsLoaded || !assetsReady) {
       return <AppLoading
                 startAsync={_loadFonts}
                 onFinish={() => setAssetsReady(true)}
                 onError={console.warn}
               />
-    }
+    } */
     return (
       /* <NavigationContainer theme={MyTheme}>
         <Navigator />
       </NavigationContainer> */
       <NavigationContainer theme={MyTheme}>
+        
         <TabNavigator/>
       </NavigationContainer>
     );

@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 
 import GalleryScreen from 'C:/Users/Reda/Desktop/gallery/PhotoSharingAppUI-complete/PhotoSharingAppUI-complete/src/navigation/index';
-import ChatScreen from './ChatScreen';
+import ChatScreen from './home';
 import MoroccoScreen from './MoroccoScreen';
 
 const TabNavigator = createMaterialBottomTabNavigator(
