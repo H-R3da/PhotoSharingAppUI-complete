@@ -46,34 +46,39 @@ function cacheFonts(fonts) {
   return fonts.map(font => Font.loadAsync(font));
 }
 
-export default function App() {
-  const [assetsReady, setAssetsReady] = useState(false);
+export default class App extends React.Component {
+  const = {
+    assetsReady: useState(false),
+    setAssetsReady: useState(false),
+  }
 
-  async function _loadFonts() {
+  async _loadFonts() {
     const iconFontAssets = cacheFonts([Feather.font])
     await Promise.all([...iconFontAssets]);
   }
 
   // Loads the Nunito font (https://docs.expo.io/guides/using-custom-fonts/)
-  let [fontsLoaded] = useFonts({
-    NunitoRegular, NunitoBold
-  });
-
-  // If the fonts or assets are not loaded, we show a default App Loading screen.
-  // Otherwise, we return our Photo Sharing App!
-  if (!fontsLoaded || !assetsReady) {
-    return <AppLoading
-              startAsync={_loadFonts}
-              onFinish={() => setAssetsReady(true)}
-              onError={console.warn}
-            />
+  let = {
+    fontsLoaded: useFonts({NunitoRegular, NunitoBold}),
   }
-  return (
-    /* <NavigationContainer theme={MyTheme}>
-      <Navigator />
-    </NavigationContainer> */
-    <NavigationContainer theme={MyTheme}>
-      <TabNavigator/>
-    </NavigationContainer>
-  );
+
+  render() {
+    // If the fonts or assets are not loaded, we show a default App Loading screen.
+    // Otherwise, we return our Photo Sharing App!
+    if (!fontsLoaded || !assetsReady) {
+      return <AppLoading
+                startAsync={_loadFonts}
+                onFinish={() => setAssetsReady(true)}
+                onError={console.warn}
+              />
+    }
+    return (
+      /* <NavigationContainer theme={MyTheme}>
+        <Navigator />
+      </NavigationContainer> */
+      <NavigationContainer theme={MyTheme}>
+        <TabNavigator/>
+      </NavigationContainer>
+    );
+  }
 }
