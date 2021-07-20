@@ -62,6 +62,8 @@ export default class App extends React.Component {
     fontsLoaded: useFonts({NunitoRegular, NunitoBold}),
   } */
 
+
+
   render() {
     // If the fonts or assets are not loaded, we show a default App Loading screen.
     // Otherwise, we return our Photo Sharing App!
@@ -73,12 +75,19 @@ export default class App extends React.Component {
               />
     } */
     return (
-      /* <NavigationContainer theme={MyTheme}>
-        <Navigator />
-      </NavigationContainer> */
-      <NavigationContainer theme={MyTheme}>
-        
-        <TabNavigator/>
+      <NavigationContainer theme={MyTheme} >
+          <Stack.Navigator initialRouteName="Home" >
+              <Stack.Screen name="Home"  options={{ title: 'الرئيسية' }}>
+                  {props => <Home {...props} data={data}/>}
+              </Stack.Screen>
+              {data.component.map((c,i)=>
+                  <Stack.Screen name={c.name} options={{headerShown: false}} key={i}>
+                      {props => <Chat {...props} data={data} theme={c.name} />}
+                  </Stack.Screen>
+              )}
+              
+          </Stack.Navigator>
+          <TabNavigator/>
       </NavigationContainer>
     );
   }
