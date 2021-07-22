@@ -76,7 +76,7 @@ export default class App extends React.Component {
     } */
     return (
       <NavigationContainer theme={MyTheme} >
-          <Stack.Navigator initialRouteName="Home" >
+          {/* <Stack.Navigator initialRouteName="Home" >
               <Stack.Screen name="Home"  options={{ title: 'الرئيسية' }}>
                   {props => <Home {...props} data={data}/>}
               </Stack.Screen>
@@ -86,7 +86,7 @@ export default class App extends React.Component {
                   </Stack.Screen>
               )}
               
-          </Stack.Navigator>
+          </Stack.Navigator> */}
           <TabNavigator/>
       </NavigationContainer>
     );
