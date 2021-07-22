@@ -13,7 +13,7 @@ LogBox.ignoreLogs(['VirtualizedLists']);
 /* import * as React from 'react'; */
 import { Text, View } from 'react-native';
 
-import TabNavigator from './components/Navigator';
+/* import Tab from './components/Navigator'; */
 
 import DataSaver from './data/DataSaver';
 import Image from "react-native-web/dist/exports/Image";
@@ -27,10 +27,18 @@ import LottieView from "lottie-react-native";
 import Chat from "./components/Chat";
 import Home from "./components/home";
 import {addWhitelistedInterpolationParam} from "react-native-web/dist/vendor/react-native/Animated/NativeAnimatedHelper";
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 const data = new DataSaver();
 const Stack = createStackNavigator();
 
+import GalleryScreen from 'C:/Users/Reda/Desktop/gallery/PhotoSharingAppUI-complete/PhotoSharingAppUI-complete/src/navigation/index';
+import ChatScreen from './components/ChatScreen';
+import MoroccoScreen from './components/MoroccoScreen';
+
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 // The theme we'll be using for our navigator
 const MyTheme = {
@@ -40,7 +48,7 @@ const MyTheme = {
     background: '#FAFAFA'
   },
 };
-
+const Tab = createBottomTabNavigator();
 // Loads the Feather icons (https://docs.expo.io/guides/icons/)
 function cacheFonts(fonts) {
   return fonts.map(font => Font.loadAsync(font));
@@ -61,8 +69,19 @@ export default class App extends React.Component {
   /* let = {
     fontsLoaded: useFonts({NunitoRegular, NunitoBold}),
   } */
-
-
+    
+    ba3iya = () =>{
+        return (<Stack.Navigator initialRouteName="Home" >
+              <Stack.Screen name="Home"  options={{ title: 'الرئيسية' }}>
+                  {props => <Home {...props} data={data}/>}
+              </Stack.Screen>
+              {data.component.map((c,i)=>
+                  <Stack.Screen name={c.name} options={{headerShown: false}} key={i}>
+                      {props => <Chat {...props} data={data} theme={c.name} />}
+                  </Stack.Screen>
+              )}  
+        </Stack.Navigator>)
+    }
 
   render() {
     // If the fonts or assets are not loaded, we show a default App Loading screen.
@@ -76,18 +95,55 @@ export default class App extends React.Component {
     } */
     return (
       <NavigationContainer theme={MyTheme} >
-          {/* <Stack.Navigator initialRouteName="Home" >
-              <Stack.Screen name="Home"  options={{ title: 'الرئيسية' }}>
-                  {props => <Home {...props} data={data}/>}
-              </Stack.Screen>
-              {data.component.map((c,i)=>
-                  <Stack.Screen name={c.name} options={{headerShown: false}} key={i}>
-                      {props => <Chat {...props} data={data} theme={c.name} />}
-                  </Stack.Screen>
-              )}
-              
-          </Stack.Navigator> */}
-          <TabNavigator/>
+          <Tab.Navigator
+            initialRouteName="Chat"
+            activeColor= "#fff"
+            inactiveColor="#787878"
+            barStyle= {{ backgroundColor: '#282828' }}
+          >
+            <Tab.Screen
+                name="Gallery"
+                component={GalleryScreen}
+                options={{
+                    tabBarLabel: 'Gallery',
+                    tabBarIcon: ({ tintColor }) => (
+                    <View>
+                        <Icon style={[{ color: tintColor }]} size={25} name={'ios-images-sharp'} />
+                    </View>
+                    ),
+                }}
+            />
+
+            <Tab.Screen
+                name="Chat"
+                //children={this.ba3iya}
+                component={this.ba3iya}
+                options={{
+                    tabBarLabel: 'Chat',
+                    tabBarIcon: ({ tintColor }) => (
+                    <View>
+                        <Icon style={[{ color: tintColor }]} size={25} name={'ios-chatbubbles-sharp'} />
+                    </View>
+                    ),
+                }}
+            />
+
+            <Tab.Screen
+                name="Morocco"
+                children={MoroccoScreen}
+                options={{
+                    tabBarLabel: 'Morocco',
+                    tabBarIcon: ({ tintColor }) => (
+                    <View>
+                        <Icon style={[{ color: tintColor }]} size={25} name={'ios-book-sharp'} />
+                    </View>
+                    ),
+                }}
+            />
+
+
+
+          </Tab.Navigator>
       </NavigationContainer>
     );
   }

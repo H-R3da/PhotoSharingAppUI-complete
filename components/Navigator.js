@@ -14,9 +14,11 @@ import MoroccoScreen from './MoroccoScreen';
 import DataSaver from '../data/DataSaver';
 
 import { createStackNavigator } from '@react-navigation/stack';
+import Home from './home';
 
 const Stack = createStackNavigator();
 const data = new DataSaver();
+const test4 = createStackNavigator({HomeScreen: Home});
 
 /* const tata = () => {
     <Stack.Navigator initialRouteName="Home" >
@@ -46,7 +48,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
     },
 
     Chat: {
-      screen: Tata,
+      screen: test4,
       navigationOptions: {
         tabBarLabel: 'Chat',
         tabBarIcon: ({ tintColor }) => (

@@ -1,4 +1,4 @@
-const serverURL = 'Your URL goes here' // 'http://example.com:5000'
+const serverURL = 'http://0.0.0.0:5000' // 'http://example.com:5000'
 
 class DataSaver {
     chatHistory = {
